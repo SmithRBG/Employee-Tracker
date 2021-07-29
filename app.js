@@ -10,7 +10,7 @@ const app = express();
 
 /* app.get('/', (req, res) => res.send('HELLO WORLD')); */
 
-/* const PORT = process.eventNames.PORT || 5000; */
+ const PORT = process.eventNames.PORT || 8080;
 
 //riddle me this, what is this?
 app.use(express.json());
@@ -20,3 +20,17 @@ app.use(express.urlencoded({extended: true}));
 app.listen(PORT, console.log(`Server Listening on ${PORT}`)); 
 
 
+const start = () => {
+    inquirer
+    .prompt({
+        name:'',
+        type:'',
+        message:'',
+        choices:[],
+    })
+    .then ((answer) => {
+        if(){
+
+        }
+    })
+}
