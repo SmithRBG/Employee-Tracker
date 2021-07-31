@@ -12,17 +12,18 @@ name varchar(30) not null
 create table Roles (
 id int not null auto_increment primary key,
 title varchar(30) not null,
+salary decimal(8),
 department_id int
 );
 
 create table Employee (
 id int not null auto_increment primary key,
-First_Name varchar(30) not null,
-last_Name varchar(30) not null,
+first_name varchar(30) not null,
+last_name varchar(30) not null,
 role_id int,
 Manager_id int
 )
 ;
 insert into Department ( name ) values ('sales'),( 'legal'),('Admin');
 insert into Roles ( title ) values ('Manager'),( 'Intern'), ('Accountant'),('Pimp Master General');
-insert into Employee ( First_Name, last_Name ) values ('Sam', 'Winchester'),( 'Michael', 'Jones'), ('Wendy', 'Williams'), ('Homer', 'Simpson');
+insert into Employee ( first_name, last_name ) values ('Sam', 'Winchester'),( 'Michael', 'Jones'), ('Wendy', 'Williams'), ('Homer', 'Simpson');
