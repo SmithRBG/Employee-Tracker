@@ -1,18 +1,20 @@
-const sequelize = require('sequelize');
-const mysql = require('mysql2');
-const dotenv = require('dotenv');
+const mysql = require('mysql');
 
 require('dotenv').config();
 
-const connection = mysql.createConnection(
-    process.env.DB_NAME,
-    process.env.DB_USER,
-    process.env.DB_PASSWORD,
-    {
+const connection = mysql.createConnection({
     host: 'localhost',
-    dialect: 'mysql2',
-    port: 5000,
-    
-});
+  
+    // Your port; if not 3306
+    port: 3306,
+  
+    // Your username
+    user: process.env.DB_USER,
+  
+    // Be sure to update with your own MySQL password!
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+  });
+
 
 module.exports = connection;

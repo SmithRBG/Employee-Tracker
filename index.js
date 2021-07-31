@@ -23,14 +23,23 @@ app.listen(PORT, console.log(`Server Listening on ${PORT}`));
 const start = () => {
     inquirer
     .prompt({
-        name:'',
-        type:'',
-        message:'',
-        choices:[],
+        name:'action',
+        type:'list',
+        message:'What would you like to do?',
+        choices:['View Employees', 'View Roles', 'View Departments', ],
     })
     .then ((answer) => {
-        if(){
-
+        if(answer.action === 'View Employees'){
+            viewEmployee();
+        } else if (answer.action === 'View Roles'){
+            viewRoles();
+        } else {
+            viewDepartments();
         }
-    })
-}
+    });
+};
+
+connection.connect((err) => {
+    if(err) throw err;
+    start();
+})
