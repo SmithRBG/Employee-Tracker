@@ -49,23 +49,61 @@ const start = () => {
 
 function addEmployee() {
     console.log("Add Employee")
-    
-    let query =
-    `SELECT `
+
+    inquirer.prompt([
+        {
+          name: "first_name",
+          type: "input",
+          message: "Enter the first name of the new employee:",
+        },
+        {
+          name: "last_name",
+          type: "input",
+          message: "Enter the first last of the new employee:",
+        },
+        {
+          name: "role_id",
+          type: "number",
+          message: "Enter the job ID number:",
+        },
+        {
+          name: "manager_id",
+          type: "number",
+          message: "Enter the manager ID number",
+        }
+
+      ])
+      .then(function(answer) {
+        console.log(answer)
+        connection.query("INSERT INTO Employee SET?",
+          {
+            first_name: answer.first_name,
+            last_name: answer.last_name,
+            role_id: answer.role_id,
+            manager_id: answer.manager_id
+          },
+          function(err) {
+            if (err) throw err;
+            console.log(`New employee: ${answer.first_name} ${answer.last_name} with Job ID ${answer.role_id} and Manager with an ID of ${answer.manager_id}`)
+            start();
+          }
+        );
+        
+   
     connection.query(query, function (err, res) {
         if (err) throw err;
 
         const roleChoices = res.map(({id, title, salary}) => ({
             value: id, title: `${title}`, salary: `${salary}`
         }));
-    })
+    });
 
-};
+      })};
+    
 
 function viewTable() {  //need to update to view entire table
     console.log("Viewing Departments")
     connection.query("SELECT * FROM department"),
-   /*  connection.query("SELECT employee"), */
     function(err, res) {
       if (err) throw err;
       console.table(res);
@@ -77,7 +115,7 @@ function viewTable() {  //need to update to view entire table
 connection.connect((err) => {
     if(err) throw err;
     start();
-})
+});
 
 
 /* const viewEmployee = () => {

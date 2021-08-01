@@ -26,4 +26,6 @@ Manager_id int
 ;
 insert into Department ( name ) values ('sales'),( 'legal'),('Admin');
 insert into Roles ( title ) values ('Manager'),( 'Intern'), ('Accountant'),('Pimp Master General');
-insert into Employee ( first_name, last_name ) values ('Sam', 'Winchester'),( 'Michael', 'Jones'), ('Wendy', 'Williams'), ('Homer', 'Simpson');
+insert into Employee ( first_name, last_name ) values ('Sam', 'Winchester', 'legal', ),( 'Michael', 'Jones'), ('Wendy', 'Williams'), ('Homer', 'Simpson');
+
+select * from Employee
