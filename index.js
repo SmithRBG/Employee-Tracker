@@ -84,13 +84,14 @@ function addEmployee() {
           },
           function(err) {
             if (err) throw err;
-            console.log(`New employee: ${answer.first_name} ${answer.last_name} with Job ID ${answer.role_id} and Manager with an ID of ${answer.manager_id}`)
+            console.log(`New employee: ${answer.first_name} ${answer.last_name} with Job ID ${answer.role_id} and Manager with an ID of ${answer.manager_id}`),
             start();
           }
         );
-        
+      }
+      )}
    
-    connection.query(query, function (err, res) {
+/*     connection.query(query, function (err, res) {
         if (err) throw err;
 
         const roleChoices = res.map(({id, title, salary}) => ({
@@ -98,10 +99,10 @@ function addEmployee() {
         }));
     });
 
-      })};
+      })}; */
     
 
-function viewTable() {  //need to update to view entire table
+/* function viewTable() {  //need to update to view entire table
     console.log("Viewing Departments")
     connection.query("SELECT * FROM department"),
     function(err, res) {
@@ -109,7 +110,7 @@ function viewTable() {  //need to update to view entire table
       console.table(res);
       start();
     }
-  };
+  }; */
 
 
 connection.connect((err) => {
