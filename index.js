@@ -25,23 +25,24 @@ const start = () => {
         name:'action',
         type:'list',
         message:'What would you like to do?',
-        choices:['Add Employee', 'Update Employee', 'Delete Employee', 'View Table', 'Done'],
+        choices:['Add Employee', 'Find Employee by Departmnet', 'Find Employee by Role', 'Find Employee', 'Done'],
     })
     .then(function(answer) {
         switch (answer.action) {
             case 'Add Employee':
                 addEmployee();
                 break;
-            case 'Update Employee':
-                updateEmployee();
+            case 'Find Employee by Department':
+                findDepartment();
                 break;
-            case 'Delete Employee':
-                deleteEmployee();
+            case 'Fine Employee by Role':
+                findRole();
                 break;
-            case 'View Table':
-                viewTable();
+            case 'Find Employee':
+                findEmployee();
                 break;
             case 'Done':
+              connection.end;
                 break;
         }
     })
@@ -84,22 +85,91 @@ function addEmployee() {
           },
           function(err) {
             if (err) throw err;
-            console.log(`New employee: ${answer.first_name} ${answer.last_name} with Job ID ${answer.role_id} and Manager with an ID of ${answer.manager_id}`),
+            console.log(`Employee: ${answer.first_name} ${answer.last_name} with Job ID ${answer.role_id} and Manager with an ID of ${answer.manager_id} has been added.`),
             start();
-          }
-        );
-      }
-      )}
-   
-/*     connection.query(query, function (err, res) {
+          },
+      
+      
+      connection.query(query, function (err, res) {
+        connection.query("INSET INTO Employee SET?")
         if (err) throw err;
 
-        const roleChoices = res.map(({id, title, salary}) => ({
-            value: id, title: `${title}`, salary: `${salary}`
+        const roleChoices = res.map(({first_name, last_name, role_id, manager_id }) => ({
+            value: `${first_name} ${last_name}` `${role_id}` `${manager_id}`
         }));
+      })
+      )});
+
+    }
+
+
+
+
+      connection.connect((err) => {
+        if(err) throw err;
+        start();
     });
 
-      })}; */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   /*    function findDepartment(){
+        connection.query("SELECT * FROM Department;", function(err, res) {
+          if (err) throw err;
+          console.table(res);
+          start();
+        });
+      }
+      
+      function findRole() {
+        connection.query("SELECT role_id, title, salary, name FROM job INNER JOIN department ON department_id = department.id;", function(err, res) {
+          if (err) throw err;
+          console.table(res);
+          start();
+        });
+      }
+      
+      function findEmployee() {  
+        console.log("Finding Employees")
+        connection.query("SELECT employee.id, first_name, last_name, title, salary FROM employee INNER JOIN job ON employee.job_id = job.id;", function(err, res) {
+          if (err) throw err;
+          console.table(res);
+          start();
+        });
+      }
+       */
     
 
 /* function viewTable() {  //need to update to view entire table
@@ -113,10 +183,7 @@ function addEmployee() {
   }; */
 
 
-connection.connect((err) => {
-    if(err) throw err;
-    start();
-});
+
 
 
 /* const viewEmployee = () => {
@@ -144,15 +211,3 @@ connection.connect((err) => {
   
 } */
 
-/* 
-if(answer.action === 'Add Employee'){
-    addEmployee();
-} else if (answer.action === 'Upate Employee'){
-    updateEmployee();
-} else if (answer.action === 'Delete Employee'){
-    deleteEmployee();
-}
-} else {
-    done();
-}
-}); */
