@@ -76,7 +76,7 @@ function addEmployee() {
       ])
       .then(function(answer) {
         console.log(answer)
-        connection.query("INSERT INTO Employee SET?",
+        connection.query("INSERT INTO Employee SET ?",
           {
             first_name: answer.first_name,
             last_name: answer.last_name,
@@ -88,17 +88,10 @@ function addEmployee() {
             console.log(`Employee: ${answer.first_name} ${answer.last_name} with Job ID ${answer.role_id} and Manager with an ID of ${answer.manager_id} has been added.`),
             start();
           },
+    
       
-      
-      connection.query(query, function (err, res) {
-        connection.query("INSET INTO Employee SET?")
-        if (err) throw err;
-
-        const roleChoices = res.map(({first_name, last_name, role_id, manager_id }) => ({
-            value: `${first_name} ${last_name}` `${role_id}` `${manager_id}`
-        }));
-      })
-      )});
+      )}
+      );
 
     }
 
