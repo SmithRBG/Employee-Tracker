@@ -25,18 +25,15 @@ const start = () => {
         name:'action',
         type:'list',
         message:'What would you like to do?',
-        choices:['Add Employee', 'Find Employee by Departmnet', 'Find Employee by Role', 'Find Employee', 'Done'],
+        choices:['Add Employee', 'View Employees', 'Find Employee', 'Done'],
     })
     .then(function(answer) {
         switch (answer.action) {
             case 'Add Employee':
                 addEmployee();
                 break;
-            case 'Find Employee by Department':
-                findDepartment();
-                break;
-            case 'Fine Employee by Role':
-                findRole();
+            case 'View Employees':
+                viewEmployees();
                 break;
             case 'Find Employee':
                 findEmployee();
@@ -75,7 +72,7 @@ function addEmployee() {
 
       ])
       .then(function(answer) {
-        console.log(answer)
+        /* console.log(answer) */
         connection.query("INSERT INTO Employee SET ?",
           {
             first_name: answer.first_name,
@@ -88,14 +85,26 @@ function addEmployee() {
             console.log(`Employee: ${answer.first_name} ${answer.last_name} with Job ID ${answer.role_id} and Manager with an ID of ${answer.manager_id} has been added.`),
             start();
           },
-    
-      
-      )}
-      );
-
-    }
+        )});
+      };
 
 
+
+    function viewEmployees() {  //need to update to view entire table
+      console.log("Viewing Employees")
+      connection.query("SELECT * FROM employee_tracker.employee",
+      {
+        first_name:first_name,
+        last_name: last_name,
+        role_id: role_id,
+        manager_id: manager_id
+      },
+      function(err, res) {
+        if (err) throw err;
+        console.table(res);
+        start();
+      )};
+    }; 
 
 
       connection.connect((err) => {
