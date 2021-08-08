@@ -86,25 +86,24 @@ function addEmployee() {
             start();
           },
         )});
-      };
+};
 
 
 
     function viewEmployees() {  //need to update to view entire table
       console.log("Viewing Employees")
       connection.query("SELECT * FROM employee_tracker.employee",
-      {
-        first_name:first_name,
-        last_name: last_name,
-        role_id: role_id,
-        manager_id: manager_id
-      },
+
       function(err, res) {
         if (err) throw err;
         console.table(res);
         start();
-      )};
-    }; 
+    })};
+    
+
+
+    
+
 
 
       connection.connect((err) => {
