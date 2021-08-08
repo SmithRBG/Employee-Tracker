@@ -10,11 +10,7 @@ const app = express();
 
 /* app.get('/', (req, res) => res.send('HELLO WORLD')); */
 
- const PORT = process.eventNames.PORT || 8080;
-
-//riddle me this, what is this?
-/* app.use(express.json());
-app.use(express.urlencoded({extended: true})); */
+const PORT = process.eventNames.PORT || 8080;
 
 app.listen(PORT, console.log(`Server Listening on ${PORT}`)); 
 
@@ -25,7 +21,7 @@ const start = () => {
         name:'action',
         type:'list',
         message:'What would you like to do?',
-        choices:['Add Employee', 'View Employees', 'Find Employee', 'Done'],
+        choices:['Add Employee', 'View Employees', 'Update Employee', 'Done'],
     })
     .then(function(answer) {
         switch (answer.action) {
@@ -35,8 +31,8 @@ const start = () => {
             case 'View Employees':
                 viewEmployees();
                 break;
-            case 'Find Employee':
-                findEmployee();
+            case 'Update Employee':
+                updateEmployee();
                 break;
             case 'Done':
               connection.end;
@@ -88,8 +84,6 @@ function addEmployee() {
         )});
 };
 
-
-
     function viewEmployees() {  //need to update to view entire table
       console.log("Viewing Employees")
       connection.query("SELECT * FROM employee_tracker.employee",
@@ -100,9 +94,15 @@ function addEmployee() {
         start();
     })};
     
+function updateEmployee() {
+  console.log("Updating Employees")
+  connection.query("",
 
-
-    
+  function(err, res) {
+    if(err) throw err;
+    console.table(res);
+    start();
+  })};
 
 
 
@@ -119,69 +119,10 @@ function addEmployee() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   /*    function findDepartment(){
-        connection.query("SELECT * FROM Department;", function(err, res) {
-          if (err) throw err;
-          console.table(res);
-          start();
-        });
-      }
-      
-      function findRole() {
-        connection.query("SELECT role_id, title, salary, name FROM job INNER JOIN department ON department_id = department.id;", function(err, res) {
-          if (err) throw err;
-          console.table(res);
-          start();
-        });
-      }
-      
-      function findEmployee() {  
-        console.log("Finding Employees")
-        connection.query("SELECT employee.id, first_name, last_name, title, salary FROM employee INNER JOIN job ON employee.job_id = job.id;", function(err, res) {
-          if (err) throw err;
-          console.table(res);
-          start();
-        });
-      }
-       */
+   
     
 
-/* function viewTable() {  //need to update to view entire table
-    console.log("Viewing Departments")
-    connection.query("SELECT * FROM department"),
-    function(err, res) {
-      if (err) throw err;
-      console.table(res);
-      start();
-    }
-  }; */
+
 
 
 
