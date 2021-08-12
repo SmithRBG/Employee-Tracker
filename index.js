@@ -84,7 +84,7 @@ function addEmployee() {
         )});
 };
 
-    function viewEmployees() {  //need to update to view entire table
+    function viewEmployees() {  //views table
       console.log("Viewing Employees")
       connection.query("SELECT * FROM employee_tracker.employee",
 
