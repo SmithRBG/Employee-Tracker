@@ -6,7 +6,7 @@ This application will allow users to keep track of their employees in a database
 
 ## Usage
 
-As a user, I will be able to view, add and update employees.
+As a user, I will be able to view, add and update employees from a selection of results once the server is running.
 
 ## Dependencies
 ```
