@@ -6,7 +6,7 @@ This application will allow users to keep track of their employees in a database
 
 ## Usage
 
-As a user, I will be able to view, add, update, and delete employees.
+As a user, I will be able to view, add and update employees.
 
 ## Dependencies
 ```
@@ -14,5 +14,4 @@ Node, mysql, express, inquirer
 ```
 
 ## Image
-
-## Links
+![sc 6](https://user-images.githubusercontent.com/81999910/129274522-b00bbfaa-c2ca-463a-8611-42ae8d224413.JPG)
