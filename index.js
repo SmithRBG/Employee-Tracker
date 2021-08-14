@@ -96,32 +96,54 @@ function addEmployee() {
 
     //updating employees??
     
-function updateEmployee() {
+/* function updateEmployee() {
   console.log("Updating Employees")
-  connection.query("UPDATE Employee SET",
+  connection.query("UPDATE Employee SET role_id = ? WHERE Manager_id = ?",
     {
 
     },
   function(err, res) {
+
+    con.query(sql, [role_id, manager_id],function (err, result) {
+      if (err) throw err;
+
     if(err) throw err;
     console.table(res);
     start();
-  })};
+  })}
+  )
+}; */
 
 
   function updateEmployee() {
-    if (err) throw err;
-    var sql = "UPDATE Employee SET role_id = '' WHERE Manager_id = ''";
-    con.query(sql, function (err, result) {
+    inquirer.prompt([
+      {
+        name: "first_name",
+        type: "list",
+        message: "Select their first name below:",
+      },
+      {
+       name: "manager_id",
+        type: "input",
+        message: "What is their new manager ID?"
+      },
+      {
+        name: "role_id",
+        type: "input",
+        message: "What is their new role ID?"
+      },
+    ])
+    .then (function (result) {
+    var sql = "UPDATE Employee SET role_id = ? WHERE Manager_id = ?";
+    con.query(sql, [result.role_id, result.manager_id],function (err, result) {
       if (err) throw err;
       console.log(result.affectedRows + " record(s) updated");
     });
-  };
+  }
+});
 
 
       connection.connect((err) => {
         if(err) throw err;
         start();
     });
-
-
