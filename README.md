@@ -15,3 +15,6 @@ Node, mysql, express, inquirer
 
 ## Image
 ![sc 6](https://user-images.githubusercontent.com/81999910/129274522-b00bbfaa-c2ca-463a-8611-42ae8d224413.JPG)
+
+## Walkthrough
+https://drive.google.com/file/d/1YR5yU9F0yEVIwSgX3vVJKXxRPX_rOs3g/view
