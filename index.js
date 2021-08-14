@@ -119,8 +119,8 @@ function addEmployee() {
     inquirer.prompt([
       {
         name: "first_name",
-        type: "list",
-        message: "Select their first name below:",
+        type: "input",
+        message: "Enter the first name of the employee you want to edit",
       },
       {
        name: "manager_id",
@@ -135,12 +135,11 @@ function addEmployee() {
     ])
     .then (function (result) {
     var sql = "UPDATE Employee SET role_id = ? WHERE Manager_id = ?";
-    con.query(sql, [result.role_id, result.manager_id],function (err, result) {
+    connection.query(sql, [result.role_id, result.manager_id],function (err, result) {
       if (err) throw err;
       console.log(result.affectedRows + " record(s) updated");
     });
-  }
-});
+  })};
 
 
       connection.connect((err) => {
